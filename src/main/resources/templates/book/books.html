@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Books</title>
+    <th:block th:include="fragments/header"/>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <h2>Books list</h2>
+        <a type="button" class="btn btn-primary" th:href="@{/books/add}">Add Book</a>
+        <form class="form-horizontal" th:object="${searcher}" th:action="@{/books}" method="post">
+
+            <table style="border-radius: 20px">
+                <tr>
+                    <th>Search Type</th>
+                    <th>Search String</th>
+                    <th>Sort By</th>
+                    <th>Sort Style</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="form-control" th:field="*{searchType}" th:default="''">
+                            <option th:value="${'0'}" th:text="'starts with'">text</option>
+                            <option th:value="${'1'}" th:text="'contains'">text</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input class="form-control" size="30" type="text" th:field="*{searchString}"/>
+                    </td>
+                    <td>
+                        <select class="form-control" th:field="*{fieldSorted}" th:default="id">
+                            <option th:value="${'id'}" th:text="'id'">text</option>
+                            <option th:value="${'title'}" th:text="'title'">text</option>
+                            <option th:value="${'Publisher.publisherName'}" th:text="'publisher'">text</option>
+                            <option th:value="${'publishingYear'}" th:text="'publishing year'">text</option>
+                            <option th:value="${'numberOfPages'}" th:text="'number of pages'">text</option>
+                            <option th:value="${'format'}" th:text="'format'">text</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" th:field="*{ascDesc}" th:default="1">
+                            <option th:each="asc : ${searchDirection}"
+                                    th:value="${asc.name()}"
+                                    th:text="${asc.name()}">
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div th:if="${#lists.isEmpty(bookList)}">
+        <h2>Sorry, there are no books matching your criteria</h2>
+    </div>
+    <div th:if="${not #lists.isEmpty(bookList)}">
+        <table class="table table-stripped">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Publisher</th>
+                <th>Publishing year</th>
+                <th>No Pages</th>
+                <th>Format</th>
+                <th>Authors</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+
+            <tr th:each="book : ${bookList}">
+                <td th:text="${book.id}">Id</td>
+                <td th:text="${book.title}">First Name</td>
+                <td th:text="${book.publisher.publisherName}">Last Name</td>
+                <td th:text="${book.publishingYear}">All Names</td>
+                <td th:text="${book.numberOfPages}">Sex</td>
+                <td th:text="${book.format}">Sex</td>
+                <td>
+                    <li style="word-break: break-all" th:each="author : ${book.authorsList}"
+                        th:text="${author.firstName+' '+author.lastName+' '+author.allNames}">
+                    </li>
+                </td>
+
+                <td><a th:href="${'/books/edit/' + book.id}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/books/delete/' + book.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+</html>

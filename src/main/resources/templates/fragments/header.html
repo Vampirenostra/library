@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/style.css}" href="../../static/style.css" />
+</head>
+<body>
+
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a th:href="@{/countries}">Countries</a></li>
+                        <li><a th:href="@{/publishers}">Publishers</a></li>
+                        <li><a th:href="@{/authors}">Authors</a></li>
+                        <li><a th:href="@{/books}">Books</a></li>
+                    </ul>
+                </div>
+                <img src="logo.png" style="float: right" width="11%"
+                     th:src="@{/logo.png}" alt="" />
+            </div>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

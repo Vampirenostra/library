@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Start</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <h1>DB Controls</h1>
+        <label th:text="${result}"/>
+    </div>
+    <table class="table table-stripped">
+        <tr>
+            <td><a th:href="@{/create}" class="btn btn-success">Create Tables</a></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/populate}" class="btn btn-success">Populate Tables</a></td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/clear}" class="btn btn-success">Clear All Data</a></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
+</html>

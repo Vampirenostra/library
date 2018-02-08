@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Publishers</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <h2>Publishers list</h2>
+        <a type="button" class="btn btn-primary" th:href="@{/publishers/add}">Add Publisher</a>
+        <div th:if="${#lists.isEmpty(publishersList)}">
+            <h2>Sorry, there are no Publishers to display</h2>
+        </div>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(publishersList)}">
+        <table class="table table-stripped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="publisher : ${publishersList}">
+                <td th:text="${publisher.id}">Id</td>
+                <td th:text="${publisher.publisherName}">Name</td>
+
+                <td><a th:href="${'/publishers/edit/' + publisher.id}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/publishers/delete/' + publisher.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+</html>

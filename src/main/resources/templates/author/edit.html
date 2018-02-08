@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title th:text="${pageName}">Title</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <form class="form-horizontal" th:object="${author}" th:action="@{/authors/add}" method="post">
+            <div class="form-group">
+                <div class="col-xs-4">
+                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First Name</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" th:field="*{firstName}"/>
+                    <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last Name</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" th:field="*{lastName}"/>
+                    <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">All Names</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" th:field="*{allNames}"/>
+                    <td th:if="${#fields.hasErrors('allNames')}" th:errors="*{allNames}">AllNames Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sex</label>
+                <select th:field="*{sex}">
+                    <option th:each="s : ${sexes}"
+                            th:value="${s}"
+                            th:text="${s.name()}">
+                    </option>
+                    <td th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}">Sex Error</td>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Country</label>
+                <select th:field="*{country}">
+                    <option th:each="country : ${countriesList}"
+                            th:value="${country.id}"
+                            th:text="${country.countryName}">
+                    </option>
+                    <td th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Country Error</td>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+</html>

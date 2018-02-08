@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Countries</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <h2>Countries list</h2>
+        <a type="button" class="btn btn-primary" th:href="@{/countries/add}">Add Country</a>
+        <div th:if="${#lists.isEmpty(countriesList)}">
+            <h2>Sorry, there are no Countries to display</h2>
+        </div>
+    </div>
+
+    <div th:if="${not #lists.isEmpty(countriesList)}">
+        <table class="table table-stripped">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="country : ${countriesList}">
+                <td th:text="${country.id}">Id</td>
+                <td th:text="${country.countryName}">Name</td>
+
+                <td><a th:href="${'/countries/edit/' + country.id}" class="btn btn-default">Edit</a></td>
+                <td><a th:href="${'/countries/delete/' + country.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+</html>

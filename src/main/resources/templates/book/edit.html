@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title th:text="${pageName}">Title</title>
+    <th:block th:include="fragments/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="well well-smll">
+        <form class="form-horizontal" th:object="${book}" th:action="@{/books/add}" method="post">
+            <div class="form-group">
+                <div class="col-xs-4">
+                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Title</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" th:field="*{title}"/>
+                    <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Publisher</label>
+                <div class="col-xs-4">
+                    <select class="form-control" th:field="*{publisher}" th:default="0">
+                        <option th:each="publisher : ${publishersList}"
+                                th:value="${publisher.id}"
+                                th:text="${publisher.publisherName}">
+                        </option>
+                    </select>
+                    <td th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}">Publisher Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Publish year</label>
+                <div class="col-xs-4">
+                    <input type="number" class="form-control" th:field="*{publishingYear}"/>
+                    <td th:if="${#fields.hasErrors('publishingYear')}" th:errors="*{publishingYear}">PublishingYear
+                        Error
+                    </td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">No Pages</label>
+                <div class="col-xs-4">
+                    <input type="number" class="form-control" th:field="*{numberOfPages}"/>
+                    <td th:if="${#fields.hasErrors('numberOfPages')}" th:errors="*{numberOfPages}">NumberOfPages Error
+                    </td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Format</label>
+                <div class="col-xs-4">
+                    <select class="form-control" th:field="*{format}">
+                        <option th:each="s : ${formats}"
+                                th:value="${s}"
+                                th:text="${s.name()}">
+                        </option>
+                    </select>
+                    <td th:if="${#fields.hasErrors('format')}" th:errors="*{format}">Format Error</td>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Authors</label>
+                <div class="col-xs-4">
+                    <!-- //TODO delete after -->
+                    <!--select class="form-control" id="authors" th:field="*{authorsList}" multiple="multiple">
+                        <option th:each="author : ${authorsAsList}"
+                                th:value="${{author}}"
+                                th:text="${author.firstName+' '+author.lastName+' '+author.allNames}">
+                        </option>
+                    </select-->
+                    <ul class="list-group">
+                        <li class="form-control" th:each="author : ${authorsAsList}">
+                            <input type="checkbox" th:field="*{authorsList}" th:value="${{author}}"/>
+                            <label th:for="${#ids.prev('authorsList')}"
+                                   th:text="${author.firstName+' '+author.lastName+' '+author.allNames}">Heating</label>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <td th:if="${#fields.hasErrors('authorsList')}" th:errors="*{authorsList}">AuthorList Error</td>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+</html>
