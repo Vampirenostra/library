@@ -10,7 +10,6 @@ import ua.vampirenostra.library.repository.AuthorRepository;
 import java.util.List;
 
 @Service
-@Transactional
 public class AuthorService implements AuthorDao {
 
     @Autowired

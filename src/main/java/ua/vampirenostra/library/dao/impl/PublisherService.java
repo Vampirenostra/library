@@ -10,7 +10,6 @@ import ua.vampirenostra.library.repository.PublisherRepository;
 import java.util.List;
 
 @Service
-@Transactional
 public class PublisherService implements PublisherDao {
     @Autowired
     PublisherRepository publisherRepository;
