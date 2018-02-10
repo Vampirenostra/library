@@ -1,8 +1,8 @@
-package ua.vampirenostra.library.spring.repository;
+package ua.vampirenostra.library.repository;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.vampirenostra.library.domain.Book;
+import ua.vampirenostra.library.entity.Book;
 
 import java.util.List;
 
