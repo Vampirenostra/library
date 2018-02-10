@@ -1,7 +1,7 @@
 package ua.vampirenostra.library.spring.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.vampirenostra.library.domain.Country;
+import ua.vampirenostra.library.entity.Country;
 
 import java.util.List;
 
