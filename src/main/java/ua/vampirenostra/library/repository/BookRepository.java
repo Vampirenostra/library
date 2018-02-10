@@ -6,8 +6,9 @@ import ua.vampirenostra.library.entity.Book;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book,Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByTitleEndsWithIgnoreCase(String search, Sort sort);
+
     List<Book> findByTitleContainsIgnoreCase(String search, Sort sort);
 
 }

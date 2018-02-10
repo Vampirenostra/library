@@ -3,10 +3,10 @@ package ua.vampirenostra.library.entity;
 import org.springframework.data.domain.Sort;
 
 public class Search {
-    String searchType;
-    String searchString;
-    String fieldSorted;
-    Sort.Direction ascDesc;
+    private String searchType;
+    private String searchString;
+    private String fieldSorted;
+    private Sort.Direction ascDesc;
 
     public Search() {
     }

@@ -22,7 +22,7 @@ public class IndexController {
     DataSource dataSource;
 
     @RequestMapping(value = "/")
-    public String index(Model model) {
+    public String index() {
         return "index";
     }
 
@@ -70,14 +70,10 @@ public class IndexController {
     }
 
     private void dbAccess(ResourceDatabasePopulator populator) {
-        Connection connection = null;
-
-        connection = DataSourceUtils.getConnection(dataSource);
+        Connection connection = DataSourceUtils.getConnection(dataSource);
         populator.populate(connection);
+        DataSourceUtils.releaseConnection(connection, dataSource);
 
-        if (connection != null) {
-            DataSourceUtils.releaseConnection(connection, dataSource);
-        }
     }
 
 }

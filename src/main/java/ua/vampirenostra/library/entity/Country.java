@@ -15,7 +15,7 @@ import java.util.Objects;
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class Country implements Serializable{
+public class Country implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,6 +40,7 @@ public class Country implements Serializable{
     public String getCountryName() {
         return countryName;
     }
+
     public void setCountryName(String countryName) {
         this.countryName = countryName;
     }

@@ -16,7 +16,7 @@ import java.util.Objects;
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class Publisher implements Serializable{
+public class Publisher implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
@@ -26,7 +26,7 @@ public class Publisher implements Serializable{
     private String publisherName;
 
     @OneToMany(mappedBy = "publisher")
-    List<Book> bookList;
+    private List<Book> bookList;
 
     //Constructors
     public Publisher() {
@@ -36,18 +36,23 @@ public class Publisher implements Serializable{
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getPublisherName() {
         return publisherName;
     }
+
     public void setPublisherName(String publisherName) {
         this.publisherName = publisherName;
     }
+
     public List<Book> getBookList() {
         return bookList;
     }
+
     public void setBookList(List<Book> bookList) {
         this.bookList = bookList;
     }
