@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/librarydb?verifyServerCertificate=false&useSSL=true
+    username: root
+    password: jediwannabe
+driverClassName: com.mysql.jdbc.Driver
