@@ -18,13 +18,11 @@
     <div th:if="${not #lists.isEmpty(publishersList)}">
         <table class="table table-stripped">
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
             <tr th:each="publisher : ${publishersList}">
-                <td th:text="${publisher.id}">Id</td>
                 <td th:text="${publisher.publisherName}">Name</td>
 
                 <td><a th:href="${'/publishers/edit/' + publisher.id}" class="btn btn-default">Edit</a></td>

@@ -7,7 +7,7 @@ import ua.vampirenostra.library.domain.Book;
 import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book,Long> {
-    List<Book> findByTitleStartsWithIgnoreCase(String search, Sort sort);
+    List<Book> findByTitleEndsWithIgnoreCase(String search, Sort sort);
     List<Book> findByTitleContainsIgnoreCase(String search, Sort sort);
 
 }

@@ -22,8 +22,8 @@
                 <tr>
                     <td>
                         <select class="form-control" th:field="*{searchType}" th:default="''">
-                            <option th:value="${'0'}" th:text="'starts with'">text</option>
-                            <option th:value="${'1'}" th:text="'contains'">text</option>
+                            <option th:value="${'0'}" th:text="'contains'">text</option>
+                            <option th:value="${'1'}" th:text="'ends with'">text</option>
                         </select>
                     </td>
                     <td>
@@ -31,7 +31,6 @@
                     </td>
                     <td>
                         <select class="form-control" th:field="*{fieldSorted}" th:default="id">
-                            <option th:value="${'id'}" th:text="'id'">text</option>
                             <option th:value="${'title'}" th:text="'title'">text</option>
                             <option th:value="${'Publisher.publisherName'}" th:text="'publisher'">text</option>
                             <option th:value="${'publishingYear'}" th:text="'publishing year'">text</option>
@@ -60,7 +59,6 @@
     <div th:if="${not #lists.isEmpty(bookList)}">
         <table class="table table-stripped">
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Publisher</th>
                 <th>Publishing year</th>
@@ -72,7 +70,6 @@
             </tr>
 
             <tr th:each="book : ${bookList}">
-                <td th:text="${book.id}">Id</td>
                 <td th:text="${book.title}">First Name</td>
                 <td th:text="${book.publisher.publisherName}">Last Name</td>
                 <td th:text="${book.publishingYear}">All Names</td>

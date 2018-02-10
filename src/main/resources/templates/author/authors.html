@@ -18,7 +18,7 @@
     <div th:if="${not #lists.isEmpty(authorsList)}">
         <table class="table table-stripped">
             <tr>
-                <th>Id</th>
+
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>All Names</th>
@@ -28,7 +28,7 @@
                 <th>Delete</th>
             </tr>
             <tr th:each="author : ${authorsList}">
-                <td th:text="${author.id}">Id</td>
+
                 <td th:text="${author.firstName}">First Name</td>
                 <td th:text="${author.lastName}">Last Name</td>
                 <td th:text="${author.allNames}">All Names</td>

@@ -41,8 +41,8 @@ public class BookService implements BookDao {
 
     @Override
     public List<Book> search(Search search) {
-        if (search.getSearchType().equals("0")){
-            return bookRepository.findByTitleStartsWithIgnoreCase(search.getSearchString(),new Sort(search.getAscDesc(),search.getFieldSorted()));
+        if (search.getSearchType().equals("1")){
+            return bookRepository.findByTitleEndsWithIgnoreCase(search.getSearchString(),new Sort(search.getAscDesc(),search.getFieldSorted()));
         }
         else {
             return bookRepository.findByTitleContainsIgnoreCase(search.getSearchString(),new Sort(search.getAscDesc(),search.getFieldSorted()));

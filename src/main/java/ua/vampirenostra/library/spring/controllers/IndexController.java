@@ -75,16 +75,16 @@ public class IndexController {
 
     private String dbAccess(ResourceDatabasePopulator populator) {
         Connection connection = null;
-        try {
+        //try {
             connection = DataSourceUtils.getConnection(dataSource);
             populator.populate(connection);
-        } catch (Exception e) {
+        //} catch (Exception e) {
 
-        } finally {
+        //} finally {
             if (connection != null) {
                 DataSourceUtils.releaseConnection(connection, dataSource);
             }
-        }
+        //}
         return null;
     }
 
