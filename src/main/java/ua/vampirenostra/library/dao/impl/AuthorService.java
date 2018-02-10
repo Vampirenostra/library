@@ -8,8 +8,8 @@ import ua.vampirenostra.library.entity.Author;
 import ua.vampirenostra.library.repository.AuthorRepository;
 
 import java.util.List;
-@Service
 
+@Service
 public class AuthorService implements AuthorDao {
 
     @Autowired
