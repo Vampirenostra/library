@@ -3,21 +3,18 @@ package ua.vampirenostra.library.dao.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ua.vampirenostra.library.dao.BookDao;
-import ua.vampirenostra.library.domain.Book;
-import ua.vampirenostra.library.domain.Search;
-import ua.vampirenostra.library.spring.repository.BookRepository;
+import ua.vampirenostra.library.entity.Book;
+import ua.vampirenostra.library.entity.Search;
+import ua.vampirenostra.library.repository.BookRepository;
 
 import java.util.List;
+
 @Service
 public class BookService implements BookDao {
 
     @Autowired
     BookRepository bookRepository;
-
-   /* @Autowired
-    BookRep bookRep;*/
 
     @Override
     public Book save(Book obj) {
@@ -41,18 +38,14 @@ public class BookService implements BookDao {
 
     @Override
     public List<Book> search(Search search) {
-        if (search.getSearchType().equals("1")){
-            return bookRepository.findByTitleEndsWithIgnoreCase(search.getSearchString(),new Sort(search.getAscDesc(),search.getFieldSorted()));
-        }
-        else {
-            return bookRepository.findByTitleContainsIgnoreCase(search.getSearchString(),new Sort(search.getAscDesc(),search.getFieldSorted()));
+        if (search.getSearchType().equals("1")) {
+            return bookRepository.findByTitleEndsWithIgnoreCase(search.getSearchString(), new Sort(search.getAscDesc(),
+                    search.getFieldSorted()));
+        } else {
+            return bookRepository.findByTitleContainsIgnoreCase(search.getSearchString(), new Sort(search.getAscDesc(),
+                    search.getFieldSorted()));
         }
     }
-
-/*  @Override
-    public List<Book> search(Search search, Sort sort) {
-        return bookRep.findWhithCriteria(search);
-    }*/
 
     //Unnecessary for the moment
     @Override

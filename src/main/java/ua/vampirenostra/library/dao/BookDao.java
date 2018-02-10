@@ -1,9 +1,7 @@
 package ua.vampirenostra.library.dao;
 
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.CrudRepository;
-import ua.vampirenostra.library.domain.Book;
-import ua.vampirenostra.library.domain.Search;
+import ua.vampirenostra.library.entity.Book;
+import ua.vampirenostra.library.entity.Search;
 
 import java.util.List;
 

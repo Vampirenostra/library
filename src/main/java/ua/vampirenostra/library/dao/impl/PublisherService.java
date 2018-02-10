@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vampirenostra.library.dao.PublisherDao;
-import ua.vampirenostra.library.domain.Publisher;
-import ua.vampirenostra.library.spring.repository.PublisherRepository;
+import ua.vampirenostra.library.entity.Publisher;
+import ua.vampirenostra.library.repository.PublisherRepository;
 
 import java.util.List;
 @Service

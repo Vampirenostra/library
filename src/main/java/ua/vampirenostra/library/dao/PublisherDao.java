@@ -1,7 +1,6 @@
 package ua.vampirenostra.library.dao;
 
-import org.springframework.data.repository.CrudRepository;
-import ua.vampirenostra.library.domain.Publisher;
+import ua.vampirenostra.library.entity.Publisher;
 
 public interface PublisherDao extends GeneralDao<Publisher> {
 }
