@@ -49,8 +49,9 @@ public class CountryController {
             model.addAttribute("pageName","Edit Country");
             return "country/edit";
         }
-        else
-        countryService.save(country);
+        else {
+            countryService.save(country);
+        }
 
         return "redirect:/countries";
     }

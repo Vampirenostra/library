@@ -60,8 +60,9 @@ public class AuthorController {
 
             return "author/edit";
         }
-        else
-        authorService.save(author);
+        else{
+            authorService.save(author);
+        }
 
         return "redirect:/authors";
     }

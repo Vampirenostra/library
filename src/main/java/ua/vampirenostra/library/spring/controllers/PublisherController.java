@@ -48,9 +48,10 @@ public class PublisherController {
             model.addAttribute("pageName","Edit Publisher");
             return "publisher/edit";
         }
-        else
-        publisherService.save(publisher);
-        return "redirect:/publishers";
+        else {
+            publisherService.save(publisher);
+            return "redirect:/publishers";
+        }
     }
 
     @RequestMapping(value = "/publishers/delete/{id}", method = RequestMethod.GET)

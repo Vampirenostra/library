@@ -74,8 +74,10 @@ public class BookController {
             model.addAttribute("formats", Format.values());
             return "book/edit";
         }
-        else
-        bookService.save(book);
+        else{
+            bookService.save(book);
+        }
+
 
         return "redirect:/books";
     }
