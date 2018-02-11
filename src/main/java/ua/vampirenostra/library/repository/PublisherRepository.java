@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PublisherRepository extends JpaRepository<Publisher, Long> {
     List<Publisher> findByPublisherNameContainingIgnoreCase(String... searchString);
+    Publisher findByPublisherName(String publisherName);
 }

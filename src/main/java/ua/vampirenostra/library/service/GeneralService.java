@@ -1,8 +1,8 @@
-package ua.vampirenostra.library.dao;
+package ua.vampirenostra.library.service;
 
 import java.util.List;
 
-public interface GeneralDao <T> {
+public interface GeneralService<T> {
     T save (T obj);
     T get (long id);
     void delete (Long id);

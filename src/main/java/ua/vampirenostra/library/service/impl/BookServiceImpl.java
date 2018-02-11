@@ -1,9 +1,9 @@
-package ua.vampirenostra.library.dao.impl;
+package ua.vampirenostra.library.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ua.vampirenostra.library.dao.BookDao;
+import ua.vampirenostra.library.service.BookService;
 import ua.vampirenostra.library.entity.Book;
 import ua.vampirenostra.library.entity.Search;
 import ua.vampirenostra.library.repository.BookRepository;
@@ -11,7 +11,7 @@ import ua.vampirenostra.library.repository.BookRepository;
 import java.util.List;
 
 @Service
-public class BookService implements BookDao {
+public class BookServiceImpl implements BookService {
 
     @Autowired
     BookRepository bookRepository;

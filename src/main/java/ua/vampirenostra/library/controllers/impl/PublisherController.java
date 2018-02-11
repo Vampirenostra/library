@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.vampirenostra.library.controllers.GeneralController;
-import ua.vampirenostra.library.dao.impl.PublisherService;
+import ua.vampirenostra.library.service.impl.PublisherServiceImpl;
 import ua.vampirenostra.library.entity.Publisher;
 
 import javax.validation.Valid;
@@ -17,12 +17,12 @@ import javax.validation.Valid;
 public class PublisherController implements GeneralController<Publisher> {
 
     @Autowired
-    PublisherService publisherService;
+    PublisherServiceImpl publisherServiceImpl;
 
     //Paged
     @RequestMapping(value = "publishers", method = RequestMethod.GET)
     public String getAll(Model model) {
-        model.addAttribute("publishersList", publisherService.getAll());
+        model.addAttribute("publishersList", publisherServiceImpl.getAll());
         return "publisher/publishers";
     }
 
@@ -35,7 +35,7 @@ public class PublisherController implements GeneralController<Publisher> {
 
     @RequestMapping(value = "/publishers/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute(publisherService.get(id));
+        model.addAttribute(publisherServiceImpl.get(id));
         model.addAttribute("pageName", "Edit Publisher");
         return "publisher/edit";
     }
@@ -47,14 +47,14 @@ public class PublisherController implements GeneralController<Publisher> {
             model.addAttribute("pageName", "Edit Publisher");
             return "publisher/edit";
         } else {
-            publisherService.save(publisher);
+            publisherServiceImpl.save(publisher);
             return "redirect:/publishers";
         }
     }
 
     @RequestMapping(value = "/publishers/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id) {
-        publisherService.delete(id);
+        publisherServiceImpl.delete(id);
         return "redirect:/publishers";
     }
 }

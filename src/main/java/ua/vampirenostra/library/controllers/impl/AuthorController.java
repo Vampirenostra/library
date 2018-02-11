@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.vampirenostra.library.controllers.GeneralController;
-import ua.vampirenostra.library.dao.impl.AuthorService;
-import ua.vampirenostra.library.dao.impl.CountryService;
+import ua.vampirenostra.library.service.impl.AuthorServiceImpl;
+import ua.vampirenostra.library.service.impl.CountryServiceImpl;
 import ua.vampirenostra.library.entity.Author;
 import ua.vampirenostra.library.entity.Sex;
 
@@ -18,21 +18,21 @@ import javax.validation.Valid;
 @Controller
 public class AuthorController implements GeneralController<Author> {
     @Autowired
-    AuthorService authorService;
+    AuthorServiceImpl authorServiceImpl;
     @Autowired
-    CountryService countryService;
+    CountryServiceImpl countryServiceImpl;
 
     //Paged
     @RequestMapping(value = "authors", method = RequestMethod.GET)
     public String getAll(Model model) {
-        model.addAttribute("authorsList", authorService.getAll());
+        model.addAttribute("authorsList", authorServiceImpl.getAll());
         return "author/authors";
     }
 
     @RequestMapping(value = "/authors/add", method = RequestMethod.GET)
     public String addNew(Model model, Author author) {
         model.addAttribute("sexes", Sex.values());
-        model.addAttribute("countriesList", countryService.getAll());
+        model.addAttribute("countriesList", countryServiceImpl.getAll());
         model.addAttribute("pageName", "Add Author");
 
         return "author/edit";
@@ -40,9 +40,9 @@ public class AuthorController implements GeneralController<Author> {
 
     @RequestMapping(value = "/authors/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute(authorService.get(id));
+        model.addAttribute(authorServiceImpl.get(id));
         model.addAttribute("sexes", Sex.values());
-        model.addAttribute("countriesList", countryService.getAll());
+        model.addAttribute("countriesList", countryServiceImpl.getAll());
         model.addAttribute("pageName", "Edit Author");
 
         return "author/edit";
@@ -53,12 +53,12 @@ public class AuthorController implements GeneralController<Author> {
     public String save(Model model, @Valid Author author, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("sexes", Sex.values());
-            model.addAttribute("countriesList", countryService.getAll());
+            model.addAttribute("countriesList", countryServiceImpl.getAll());
             model.addAttribute("pageName", "Edit Author");
 
             return "author/edit";
         } else {
-            authorService.save(author);
+            authorServiceImpl.save(author);
         }
 
         return "redirect:/authors";
@@ -66,7 +66,7 @@ public class AuthorController implements GeneralController<Author> {
 
     @RequestMapping(value = "/authors/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id) {
-        authorService.delete(id);
+        authorServiceImpl.delete(id);
         return "redirect:/authors";
     }
 }

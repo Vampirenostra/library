@@ -1,16 +1,15 @@
-package ua.vampirenostra.library.dao.impl;
+package ua.vampirenostra.library.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ua.vampirenostra.library.dao.PublisherDao;
+import ua.vampirenostra.library.service.PublisherService;
 import ua.vampirenostra.library.entity.Publisher;
 import ua.vampirenostra.library.repository.PublisherRepository;
 
 import java.util.List;
 
 @Service
-public class PublisherService implements PublisherDao {
+public class PublisherServiceImpl implements PublisherService {
     @Autowired
     PublisherRepository publisherRepository;
 

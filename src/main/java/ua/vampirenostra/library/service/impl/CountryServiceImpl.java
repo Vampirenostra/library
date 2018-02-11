@@ -1,15 +1,14 @@
-package ua.vampirenostra.library.dao.impl;
+package ua.vampirenostra.library.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import ua.vampirenostra.library.dao.CountryDao;
+import ua.vampirenostra.library.service.CountryService;
 import ua.vampirenostra.library.entity.Country;
 import ua.vampirenostra.library.repository.CountryRepository;
 
 import java.util.List;
 @Service
-public class CountryService implements CountryDao {
+public class CountryServiceImpl implements CountryService {
     @Autowired
     CountryRepository countryRepository;
 

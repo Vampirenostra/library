@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.vampirenostra.library.controllers.GeneralController;
-import ua.vampirenostra.library.dao.impl.CountryService;
+import ua.vampirenostra.library.service.impl.CountryServiceImpl;
 import ua.vampirenostra.library.entity.Country;
 
 import javax.validation.Valid;
@@ -18,12 +18,12 @@ import javax.validation.Valid;
 public class CountryController implements GeneralController<Country> {
 
     @Autowired
-    CountryService countryService;
+    CountryServiceImpl countryServiceImpl;
 
     //Paged
     @RequestMapping(value = "countries", method = RequestMethod.GET)
     public String getAll(Model model) {
-        model.addAttribute("countriesList", countryService.getAll());
+        model.addAttribute("countriesList", countryServiceImpl.getAll());
         return "country/countries";
     }
 
@@ -36,7 +36,7 @@ public class CountryController implements GeneralController<Country> {
 
     @RequestMapping(value = "/countries/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute(countryService.get(id));
+        model.addAttribute(countryServiceImpl.get(id));
         model.addAttribute("pageName", "Edit Country");
         return "country/edit";
     }
@@ -48,7 +48,7 @@ public class CountryController implements GeneralController<Country> {
             model.addAttribute("pageName", "Edit Country");
             return "country/edit";
         } else {
-            countryService.save(country);
+            countryServiceImpl.save(country);
         }
 
         return "redirect:/countries";
@@ -56,7 +56,7 @@ public class CountryController implements GeneralController<Country> {
 
     @RequestMapping(value = "/countries/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id) {
-        countryService.delete(id);
+        countryServiceImpl.delete(id);
         return "redirect:/countries";
     }
 }

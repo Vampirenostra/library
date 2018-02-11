@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ua.vampirenostra.library.controllers.GeneralController;
-import ua.vampirenostra.library.dao.impl.AuthorService;
-import ua.vampirenostra.library.dao.impl.BookService;
-import ua.vampirenostra.library.dao.impl.PublisherService;
+import ua.vampirenostra.library.service.impl.AuthorServiceImpl;
+import ua.vampirenostra.library.service.impl.BookServiceImpl;
+import ua.vampirenostra.library.service.impl.PublisherServiceImpl;
 import ua.vampirenostra.library.entity.Book;
 import ua.vampirenostra.library.entity.Format;
 import ua.vampirenostra.library.entity.Search;
@@ -21,11 +21,11 @@ import javax.validation.Valid;
 @Controller
 public class BookController implements GeneralController<Book> {
     @Autowired
-    BookService bookService;
+    BookServiceImpl bookServiceImpl;
     @Autowired
-    PublisherService publisherService;
+    PublisherServiceImpl publisherServiceImpl;
     @Autowired
-    AuthorService authorService;
+    AuthorServiceImpl authorServiceImpl;
 
     //Paged
     @RequestMapping(value = "books", method = RequestMethod.POST)
@@ -33,7 +33,7 @@ public class BookController implements GeneralController<Book> {
         model.addAttribute("searcher", searcher);
         model.addAttribute("searchDirection", Sort.Direction.values());
         //Custom search
-        model.addAttribute(bookService.search(searcher));
+        model.addAttribute(bookServiceImpl.search(searcher));
 
         return "book/books";
     }
@@ -41,7 +41,7 @@ public class BookController implements GeneralController<Book> {
     @RequestMapping(value = "books", method = RequestMethod.GET)
     public String getAll(Model model) {
         model.addAttribute("searcher", new Search());
-        model.addAttribute(bookService.getAll());
+        model.addAttribute(bookServiceImpl.getAll());
         model.addAttribute("searchDirection", Sort.Direction.values());
         return "book/books";
     }
@@ -49,8 +49,8 @@ public class BookController implements GeneralController<Book> {
     @RequestMapping(value = "/books/add", method = RequestMethod.GET)
     public String addNew(Model model, Book book) {
         model.addAttribute("book", book);
-        model.addAttribute("authorsAsList", authorService.getAll());
-        model.addAttribute("publishersList", publisherService.getAll());
+        model.addAttribute("authorsAsList", authorServiceImpl.getAll());
+        model.addAttribute("publishersList", publisherServiceImpl.getAll());
         model.addAttribute("formats", Format.values());
         model.addAttribute("pageName", "Add Book");
 
@@ -59,9 +59,9 @@ public class BookController implements GeneralController<Book> {
 
     @RequestMapping(value = "/books/edit/{id}", method = RequestMethod.GET)
     public String edit(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("book", bookService.get(id));
-        model.addAttribute("authorsAsList", authorService.getAll());
-        model.addAttribute("publishersList", publisherService.getAll());
+        model.addAttribute("book", bookServiceImpl.get(id));
+        model.addAttribute("authorsAsList", authorServiceImpl.getAll());
+        model.addAttribute("publishersList", publisherServiceImpl.getAll());
         model.addAttribute("formats", Format.values());
         model.addAttribute("pageName", "Edit Book");
 
@@ -73,12 +73,12 @@ public class BookController implements GeneralController<Book> {
     public String save(Model model, @Valid Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("pageName", "Edit Book");
-            model.addAttribute("authorsAsList", authorService.getAll());
-            model.addAttribute("publishersList", publisherService.getAll());
+            model.addAttribute("authorsAsList", authorServiceImpl.getAll());
+            model.addAttribute("publishersList", publisherServiceImpl.getAll());
             model.addAttribute("formats", Format.values());
             return "book/edit";
         } else {
-            bookService.save(book);
+            bookServiceImpl.save(book);
         }
 
 
@@ -87,7 +87,7 @@ public class BookController implements GeneralController<Book> {
 
     @RequestMapping(value = "/books/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable(name = "id") Long id) {
-        bookService.delete(id);
+        bookServiceImpl.delete(id);
 
         return "redirect:/books";
     }
