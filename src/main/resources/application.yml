@@ -1,11 +1,11 @@
 spring:
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
   datasource:
     platform: mysql
     url: jdbc:mysql://localhost:3306/librarydb?verifyServerCertificate=false&useSSL=true
-    username: root
-    password: jediwannabe
+    username: username
+    password: password
 driverClassName: com.mysql.jdbc.Driver
