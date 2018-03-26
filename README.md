@@ -49,3 +49,5 @@ just choose the ones you need and push the Sear button right under the search ba
 Each Create/Edit page contains a from to perform editing or creating a new entity of the corresponding type with a set of input fields and dropdowns, for book create/edit you are provided with a set of check boxes to choose one ore several authors.
 Pushing the Save button will save the entity and redirect you to the page listing all the objects of the categorie.
 All create/edit pages are checked for constraint violation and will react on wrong or impossible inputs showing a corresponding message under the faulty input.
+
+AAAAA
