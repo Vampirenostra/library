@@ -16,9 +16,11 @@ import javax.validation.Valid;
 
 @Controller
 public class CountryController implements GeneralController<Country> {
-
-    @Autowired
     CountryServiceImpl countryServiceImpl;
+    @Autowired
+    public CountryController(CountryServiceImpl countryServiceImpl) {
+        this.countryServiceImpl = countryServiceImpl;
+    }
 
     //Paged
     @RequestMapping(value = "countries", method = RequestMethod.GET)

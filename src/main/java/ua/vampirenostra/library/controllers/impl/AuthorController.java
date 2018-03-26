@@ -17,10 +17,14 @@ import javax.validation.Valid;
 
 @Controller
 public class AuthorController implements GeneralController<Author> {
-    @Autowired
     AuthorServiceImpl authorServiceImpl;
-    @Autowired
     CountryServiceImpl countryServiceImpl;
+
+    @Autowired
+    public AuthorController(AuthorServiceImpl authorServiceImpl, CountryServiceImpl countryServiceImpl) {
+        this.authorServiceImpl = authorServiceImpl;
+        this.countryServiceImpl = countryServiceImpl;
+    }
 
     //Paged
     @RequestMapping(value = "authors", method = RequestMethod.GET)

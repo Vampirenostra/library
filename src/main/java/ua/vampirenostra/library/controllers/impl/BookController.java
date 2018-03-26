@@ -20,12 +20,16 @@ import javax.validation.Valid;
 
 @Controller
 public class BookController implements GeneralController<Book> {
-    @Autowired
     BookServiceImpl bookServiceImpl;
-    @Autowired
     PublisherServiceImpl publisherServiceImpl;
-    @Autowired
     AuthorServiceImpl authorServiceImpl;
+
+    @Autowired
+    public BookController(BookServiceImpl bookServiceImpl, PublisherServiceImpl publisherServiceImpl, AuthorServiceImpl authorServiceImpl) {
+        this.bookServiceImpl = bookServiceImpl;
+        this.publisherServiceImpl = publisherServiceImpl;
+        this.authorServiceImpl = authorServiceImpl;
+    }
 
     //Paged
     @RequestMapping(value = "books", method = RequestMethod.POST)

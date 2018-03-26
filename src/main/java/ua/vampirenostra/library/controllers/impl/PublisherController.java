@@ -15,9 +15,11 @@ import javax.validation.Valid;
 
 @Controller
 public class PublisherController implements GeneralController<Publisher> {
-
-    @Autowired
     PublisherServiceImpl publisherServiceImpl;
+    @Autowired
+    public PublisherController(PublisherServiceImpl publisherServiceImpl) {
+        this.publisherServiceImpl = publisherServiceImpl;
+    }
 
     //Paged
     @RequestMapping(value = "publishers", method = RequestMethod.GET)
